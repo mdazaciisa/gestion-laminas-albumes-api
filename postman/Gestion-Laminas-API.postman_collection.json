@@ -1,0 +1,236 @@
+{
+  "info": {
+    "name": "Gestión Láminas API",
+    "description": "Colección para probar la API de gestión de láminas y álbumes (Java 21, Spring Boot).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "base_url", "value": "http://localhost:8080" },
+    { "key": "album_id", "value": "" },
+    { "key": "lamina_id", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Álbumes",
+      "item": [
+        {
+          "name": "GET - Obtener todos los álbumes",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/albumes",
+              "host": ["{{base_url}}"],
+              "path": ["api", "albumes"]
+            }
+            }
+        },
+        {
+          "name": "GET - Obtener álbum por ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/albumes/{{album_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "albumes", "{{album_id}}"]
+            }
+          }
+        },
+        {
+          "name": "POST - Crear álbum",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Mundial Qatar 2022\",\n  \"imagen\": \"https://example.com/mundial2022.jpg\",\n  \"fechaLanzamiento\": \"2022-10-01\",\n  \"tipoLaminas\": \"deportes\",\n  \"totalLaminas\": 640,\n  \"descripcion\": \"Álbum oficial del Mundial\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/albumes",
+              "host": ["{{base_url}}"],
+              "path": ["api", "albumes"]
+            }
+          }
+        },
+        {
+          "name": "PUT - Actualizar álbum",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Mundial Qatar 2022 - Actualizado\",\n  \"imagen\": \"https://example.com/mundial2022-updated.jpg\",\n  \"fechaLanzamiento\": \"2022-10-01\",\n  \"tipoLaminas\": \"deportes\",\n  \"totalLaminas\": 650,\n  \"descripcion\": \"Álbum oficial actualizado\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/albumes/{{album_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "albumes", "{{album_id}}"]
+            }
+          }
+        },
+        {
+          "name": "DELETE - Eliminar álbum",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/api/albumes/{{album_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "albumes", "{{album_id}}"]
+            }
+          }
+        },
+        {
+          "name": "GET - Buscar álbumes por nombre",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/albumes/buscar?nombre=Mundial",
+              "host": ["{{base_url}}"],
+              "path": ["api", "albumes", "buscar"],
+              "query": [{"key": "nombre", "value": "Mundial"}]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Láminas - CRUD",
+      "item": [
+        {
+          "name": "GET - Obtener láminas del álbum",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/laminas/album/{{album_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "laminas", "album", "{{album_id}}"]
+            }
+          }
+        },
+        {
+          "name": "GET - Obtener lámina por ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/laminas/{{lamina_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "laminas", "{{lamina_id}}"]
+            }
+          }
+        },
+        {
+          "name": "POST - Crear lámina individual",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numero\": 10,\n  \"nombre\": \"Lionel Messi\",\n  \"imagen\": \"https://example.com/messi.jpg\",\n  \"adquirida\": true,\n  \"cantidadRepetidas\": 2\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/laminas/album/{{album_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "laminas", "album", "{{album_id}}"]
+            }
+          }
+        },
+        {
+          "name": "POST - Crear láminas múltiples",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numeros\": [1,2,3,4,5,10,15,20]\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/laminas/album/{{album_id}}/multiple",
+              "host": ["{{base_url}}"],
+              "path": ["api", "laminas", "album", "{{album_id}}", "multiple"]
+            }
+          }
+        },
+        {
+          "name": "PUT - Actualizar lámina",
+          "request": {
+            "method": "PUT",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"numero\": 10,\n  \"nombre\": \"Lionel Messi - Actualizado\",\n  \"imagen\": \"https://example.com/messi-updated.jpg\",\n  \"adquirida\": true,\n  \"cantidadRepetidas\": 3\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/laminas/{{lamina_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "laminas", "{{lamina_id}}"]
+            }
+          }
+        },
+        {
+          "name": "DELETE - Eliminar lámina",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{base_url}}/api/laminas/{{lamina_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "laminas", "{{lamina_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Láminas - Operaciones",
+      "item": [
+        {
+          "name": "PATCH - Marcar como adquirida",
+          "request": {
+            "method": "PATCH",
+            "url": {
+              "raw": "{{base_url}}/api/laminas/album/{{album_id}}/adquirir/10",
+              "host": ["{{base_url}}"],
+              "path": ["api", "laminas", "album", "{{album_id}}", "adquirir", "10"]
+            }
+          }
+        },
+        {
+          "name": "PATCH - Agregar repetida",
+          "request": {
+            "method": "PATCH",
+            "url": {
+              "raw": "{{base_url}}/api/laminas/album/{{album_id}}/repetida/10",
+              "host": ["{{base_url}}"],
+              "path": ["api", "laminas", "album", "{{album_id}}", "repetida", "10"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Consultas Especiales",
+      "item": [
+        {
+          "name": "GET - Láminas faltantes",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/laminas/album/{{album_id}}/faltantes",
+              "host": ["{{base_url}}"],
+              "path": ["api", "laminas", "album", "{{album_id}}", "faltantes"]
+            }
+          }
+        },
+        {
+          "name": "GET - Láminas repetidas",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/laminas/album/{{album_id}}/repetidas",
+              "host": ["{{base_url}}"],
+              "path": ["api", "laminas", "album", "{{album_id}}", "repetidas"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
