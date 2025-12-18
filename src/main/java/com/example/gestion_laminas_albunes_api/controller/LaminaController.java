@@ -18,7 +18,6 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/api/laminas")
-@CrossOrigin(origins = "*")
 public class LaminaController {
     
     @Autowired
