@@ -62,8 +62,6 @@ http://localhost:8080/api/albumes
 | Documento | Descripción |
 |-----------|-------------|
 | [API_DOCUMENTATION.md](API_DOCUMENTATION.md) | Documentación completa de todos los endpoints |
-| [EJEMPLOS_PRUEBAS.md](EJEMPLOS_PRUEBAS.md) | Ejemplos de peticiones JSON y flujos de prueba |
-| [POSTMAN_SETUP.md](POSTMAN_SETUP.md) | Guía para configurar y usar Postman |
 | [database_setup.sql](database_setup.sql) | Script SQL con consultas útiles |
 
 ## 🏗️ Arquitectura del Proyecto
@@ -201,21 +199,12 @@ Cada respuesta de álbum incluye:
 ### 4. Consultas Optimizadas
 Endpoints específicos para obtener solo las láminas faltantes o solo las repetidas, evitando transferir datos innecesarios.
 
-## 🧪 Pruebas
-
-Para realizar pruebas completas del sistema:
-
-1. Consulta [EJEMPLOS_PRUEBAS.md](EJEMPLOS_PRUEBAS.md) para flujos de prueba
-2. Usa [POSTMAN_SETUP.md](POSTMAN_SETUP.md) para configurar Postman
-3. Documenta tus pruebas con screenshots
-
 ## 📝 Notas Importantes
 
 - Las tablas se crean automáticamente con Hibernate (ddl-auto=update)
 - Al eliminar un álbum, se eliminan todas sus láminas (cascade)
 - No se pueden crear láminas duplicadas (mismo número en el mismo álbum)
 - Todos los endpoints devuelven JSON
-- CORS está habilitado para facilitar pruebas desde navegadores
 
 ## 🤝 Contribuciones
 
