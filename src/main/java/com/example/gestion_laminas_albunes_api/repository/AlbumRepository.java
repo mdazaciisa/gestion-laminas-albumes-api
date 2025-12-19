@@ -6,9 +6,6 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/**
- * Repositorio para gestionar las operaciones de base de datos de la entidad Album.
- */
 @Repository
 public interface AlbumRepository extends JpaRepository<Album, Long> {
     
