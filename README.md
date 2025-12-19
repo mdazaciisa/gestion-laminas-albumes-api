@@ -179,6 +179,7 @@ curl http://localhost:8080/api/laminas/album/1/faltantes
 - **Lombok**: Reducción de código boilerplate (@Data)
 - **Maven**: Gestión de dependencias
 - **Hibernate**: ORM para JPA
+- **SpringDoc OpenAPI**: Documentación automática de la API (Swagger UI)
 
 ## ✨ Funcionalidades Especiales
 
@@ -190,14 +191,41 @@ La creación de un álbum no genera láminas automáticamente. Para cargar lámi
 ### 2. Carga Masiva
 Endpoint especial para agregar múltiples láminas de una sola vez mediante una lista de números.
 
-### 3. Estadísticas en Tiempo Real
+### 3. Estadísticas por álbum
 Cada respuesta de álbum incluye:
 - Cantidad de láminas adquiridas
 - Cantidad de láminas faltantes
 - Porcentaje de completación
 
+Endpoint:
+`GET /api/albumes/{id}/estadisticas`
+
 ### 4. Consultas Optimizadas
 Endpoints específicos para obtener solo las láminas faltantes o solo las repetidas, evitando transferir datos innecesarios.
+
+## 🔗 Documentación Swagger
+La API cuenta con documentación interactiva generada con Swagger UI, donde puedes explorar todos los endpoints, probar solicitudes y ver los modelos.
+
+[Acceder a Swagger UI](http://localhost:8080/swagger-ui/index.html)
+
+⚠️ Nota: El link anterior funciona cuando la aplicación se está ejecutando localmente.
+Si la API está desplegada en un servidor, reemplaza localhost:8080 por la URL correspondiente.
+
+## 👥 Roles y responsabilidades del equipo
+**Felipe Aguirre**
+- Diseño e implementación de la arquitectura base del proyecto.
+- Desarrollo completo del CRUD de Álbumes y Láminas.
+- Modelado de entidades y relaciones JPA/Hibernate.
+- Configuración y estructura de la base de datos PostgreSQL.
+- Creación y mantenimiento de la colección Postman con pruebas de todos los endpoints.
+
+**Marcela Daza**
+- Implementación del manejo de errores y validaciones de la API
+(IDs inexistentes, recursos no encontrados, duplicados y respuestas controladas).
+- Ajustes en la lógica de negocio para asegurar la integridad de los datos.
+- Implementación de endpoints especiales (faltantes, repetidas y control de estados).
+- Integración y configuración de la documentación Swagger / OpenAPI.
+- Revisión de respuestas JSON y estandarización de mensajes de la API.
 
 ## 📝 Notas Importantes
 
@@ -205,6 +233,9 @@ Endpoints específicos para obtener solo las láminas faltantes o solo las repet
 - Al eliminar un álbum, se eliminan todas sus láminas (cascade)
 - No se pueden crear láminas duplicadas (mismo número en el mismo álbum)
 - Todos los endpoints devuelven JSON
+- El campo `totalLaminas` representa el total teórico del álbum.
+- Las láminas se crean explícitamente mediante endpoints individuales o de carga masiva.
+- Las láminas faltantes corresponden a aquellas registradas en el sistema cuyo estado es `adquirida = false`.
 
 ## 🤝 Contribuciones
 

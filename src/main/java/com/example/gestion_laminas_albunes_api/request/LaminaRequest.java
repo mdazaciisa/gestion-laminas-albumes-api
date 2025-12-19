@@ -2,9 +2,6 @@ package com.example.gestion_laminas_albunes_api.request;
 
 import lombok.Data;
 
-/**
- * DTO para la creación o actualización de una lámina individual.
- */
 @Data
 public class LaminaRequest {
     
