@@ -65,7 +65,7 @@ public class LaminaController {
 
         LaminaResponse respuesta = new LaminaResponse();
         if (lamina != null) {
-            respuesta.setStatus(200);
+            respuesta.setStatus(201);
             respuesta.setMensaje("Lámina creada");
             respuesta.setDatos(lamina);
             return ResponseEntity.ok().body(respuesta);

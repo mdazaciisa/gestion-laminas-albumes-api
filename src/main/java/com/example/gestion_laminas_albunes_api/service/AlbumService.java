@@ -34,6 +34,13 @@ public class AlbumService {
     /* Crear un nuevo álbum */
     @Transactional
     public Album crear(AlbumRequest request) {
+        if(request.getNombre() == null) {
+            return null;
+        }
+        if(request.getTotalLaminas() == null) {
+            return null;
+        }
+        
         Album album = new Album();
         album.setNombre(request.getNombre());
         album.setImagen(request.getImagen());
@@ -95,11 +102,12 @@ public class AlbumService {
         // Calcular estadísticas
         List<Lamina> laminas = laminaRepository.findByAlbumId(album.getId());
         long adquiridas = laminas.stream().filter(Lamina::getAdquirida).count();
+
         response.setLaminasAdquiridas((int) adquiridas);
-        response.setLaminasFaltantes(laminas.size() - (int) adquiridas);
+        response.setLaminasFaltantes(album.getTotalLaminas() - (int) adquiridas);
 
         if (laminas.size() > 0) {
-            double porcentaje = (adquiridas * 100.0) / laminas.size();
+            double porcentaje = (adquiridas * 100.0) / album.getTotalLaminas();
             response.setPorcentajeCompletado(Math.round(porcentaje * 100.0) / 100.0);
         } else {
             response.setPorcentajeCompletado(0.0);

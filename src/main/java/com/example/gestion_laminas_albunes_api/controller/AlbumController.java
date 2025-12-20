@@ -53,12 +53,12 @@ public class AlbumController {
 
         AlbumResponse respuesta = new AlbumResponse();
         if (album != null) {
-            respuesta.setStatus(200);
+            respuesta.setStatus(201);
             respuesta.setMensaje("Album creado");
             respuesta.setDatos(album);
             return ResponseEntity.ok().body(respuesta);
         } else {
-            respuesta.setStatus(404);
+            respuesta.setStatus(400);
             respuesta.setMensaje("Album no creado");
             return ResponseEntity.status(404).body(respuesta);
         }
